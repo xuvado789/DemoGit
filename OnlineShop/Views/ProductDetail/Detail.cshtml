@@ -1,0 +1,98 @@
+﻿@model IEnumerable<OnlineShop.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="page-heading">
+                        <div class="page-header-heading padB10">
+                            <h3>Chi tiết sản phẩm</h3>
+                        </div>
+                        <div class="breadcrum-box">
+                            <ul class="breadcrum">
+                                <li><a href="index.html">Trang chủ</a></li>
+                                <li class="active"><a href="#">Chi tiết sản phẩm</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--//================Breadcrumb section end==============//-->
+<!--//================Product section start==============//-->
+<div class="product-page padTB60">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-md-10 col-sm-10 col-xs-12 pull-right">
+                        <figure class="product-page-image">
+                            <img src="~/Content/assets/images/best-product/@item.Image" alt="" />
+                        </figure>
+                    </div>
+                </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="product-page-heading">
+                    <h4>@item.Name</h4>
+                    <h3>@(item.PriceNew.HasValue ? item.PriceNew.Value.ToString("N0") : "Liên hệ") VND</h3>
+                    <p class="marT10">@item.Detail</p>
+                    @*<p class="marB0"><a href="#"><span>read more....</span></a></p>*@
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="select-size">
+                            <select>
+                                <option value="0">Chọn size:</option>
+                                <option>Nhỏ</option>
+                                <option>Trung Bình</option>
+                                <option>Trưởng Thành</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="incress-button">
+                            <ul>
+                                <li><button class="minus"><i class="fa fa-minus" aria-hidden="true"></i></button></li>
+                                <li><input type="text" value="01" class="qty"></li>
+                                <li><button class="add"><i class="fa fa-plus" aria-hidden="true"></i></button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="add-to-cart">
+                            <a href="/them-gio-hang?productId=@item.IdProduct&quantity=1" class="template-button"><i class="fa fa-shopping-bag marR10" aria-hidden="true"></i>Thêm vào giỏ</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="product-ability">
+                            <p><strong>mã sản phẩm</strong> : <span>@item.IdProduct</span></p>
+                            <p><strong>Còn</strong> : <span>@item.Status</span></p>
+                            <p><strong>loại</strong> : @item.GroupProduct.Name</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+<!--//================Product section end==============//-->
